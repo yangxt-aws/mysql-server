@@ -32,10 +32,11 @@
 --echo
 
 --let $rpl_skip_start_slave=1
+# Exercises the disk-CSA APPLIER_EVENT_MEMORY_LIMIT backpressure, not IMR.
+--let $rpl_in_memory_relaylog= OFF
 --source include/rpl/init_source_replica.inc
 
 --source include/rpl/connection_replica.inc
---source include/rpl/csa_disable_in_memory_relaylog.inc
 
 SET @tmp_max= @@global.replica_max_allowed_packet;
 --let $saved_mem_limit= `SELECT APPLIER_EVENT_MEMORY_LIMIT FROM performance_schema.replication_applier_configuration WHERE CHANNEL_NAME = ''`

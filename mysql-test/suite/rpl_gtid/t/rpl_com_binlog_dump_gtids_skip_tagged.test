@@ -39,7 +39,7 @@
 --source include/have_binlog_format_row.inc
 --let $rpl_skip_start_slave=1
 # Error/log text differs with IMR.
---source include/not_csa_imr.inc
+--let $rpl_in_memory_relaylog= OFF
 --source include/rpl/init_source_replica.inc
 
 # Turn off relay log purge, so that logs are available when we scan them
